@@ -1,0 +1,25 @@
+# EXAMPLE play.txt file
+
+# read in the skeleton
+skeleton data2/131.asf
+
+# read in a bunch of motion files
+motion data2/131_01.amc
+motion data2/131_02.amc
+motion data2/131_03.amc
+motion data2/131_07.amc
+motion data2/131_10.amc
+
+# clip <startFrame> <endFrame> <characterLabel> <stringLabel>
+# Note: endFrame is clamped to not exceed the max # of frames available,
+
+clip 0   99999 F all
+clip 210    765	A Walk stop
+clip 1163  2100 B Walk stop
+clip 2431  3242 C Hop stop
+clip 3450  3923 D Hop stop
+clip 4034  5810 E Hop stop
+
+# designate the list of clips to be played
+
+playlist ABCDAABBCCACADBDBACBCDC
