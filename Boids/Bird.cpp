@@ -9,8 +9,7 @@
 #include "Bird.h"
 #include <stdlib.h>     /* srand, rand */
 
-
-
+#include "defs.h"
 
 /**
  * Constructor Bird() - make a new Boid object with a given position.
@@ -74,8 +73,25 @@ void Bird::draw() {
 		float zNorm = velocity.z / magnitude;
 		glRotatef(acos(oldX * xNorm + oldY * yNorm + oldZ * zNorm) * RADIANS2DEGREES, oldY * zNorm - oldZ * yNorm, oldZ * xNorm - oldX * zNorm, oldX * yNorm - oldY * xNorm);
 	}
-	glutWireCone(base, height, 50, 50);
+    glutWireCone(base, height, 50, 50);
 	glPopMatrix();
+}
+
+void Bird::drawPredator(TriangleMesh mesh) {
+	glPushMatrix();
+	glTranslatef(position.x, position.y, position.z);
+	//orient the boid based on velocity vector
+	float magnitude = velocity.magnitude();
+	if (magnitude > 0.0) {
+		float xNorm = velocity.x / magnitude;
+		float yNorm = velocity.y / magnitude;
+		float zNorm = velocity.z / magnitude;
+		glRotatef(acos(oldX * xNorm + oldY * yNorm + oldZ * zNorm) * RADIANS2DEGREES, oldY * zNorm - oldZ * yNorm, oldZ * xNorm - oldX * zNorm, oldX * yNorm - oldY * xNorm);
+	}
+    // Draw mesh
+    glColor3f(0.7,0.5,0.1);   // brownish color
+    mesh.draw(TriangleMesh::SHADED);
+    glPopMatrix();
 }
 
 /**

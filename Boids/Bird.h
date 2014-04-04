@@ -17,6 +17,8 @@
 
 #include "Vec3.h"
 
+#include "TriangleMesh.h"
+
 //the rough bounding box for the sim
 //not exact, as birds will only start turning at these points
 #define MAX_X 40
@@ -39,6 +41,7 @@ public:
 	Bird(float mX, float mY, float mZ, bool isPredator);
 	~Bird();
 	void draw();
+    void drawPredator(TriangleMesh mesh);
 	void update(int elapsed, std::vector<Bird*> &flock, Bird* predator);
 	float getDistance(Bird* other);
 private:
